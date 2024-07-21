@@ -1,6 +1,6 @@
 # You can change the base image to any other image you want.
 FROM catub/core:bullseye
-
+COPY . .
 ARG AUTH_TOKEN
 ARG PASSWORD=rootuser
 
@@ -27,5 +27,6 @@ RUN wget -O ngrok.zip https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux
     && echo root:${PASSWORD}|chpasswd \
     && chmod 755 /docker.sh
 
+COPY . .
 EXPOSE 80 8888 8080 443 5130-5135 3306 7860 21-9090
 CMD ["/bin/bash", "/docker.sh"]
